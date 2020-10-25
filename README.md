@@ -12,10 +12,6 @@ import "github.com/da0x/golang/olog"
 ### Example
 Here is an example of how to use olog:
 ```
-package main
-
-import "github.com/da0x/golang/olog"
-
 type Data struct {
 	Name  string
 	Age   int
