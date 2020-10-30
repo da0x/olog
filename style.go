@@ -48,50 +48,50 @@ type StyleRow struct{ b, m, i, e string }
 
 // Normal is a thin bordered table.
 var Normal = Style{
-	t: StyleRow{b: "┌", m: "─", i: "┬", e: "┐"},
-	m: StyleRow{b: "│", m: " ", i: "│", e: "│"},
-	s: StyleRow{b: "├", m: "─", i: "┼", e: "┤"},
-	b: StyleRow{b: "└", m: "─", i: "┴", e: "┘"},
+	t: StyleRow{b: "┌─", m: "─", i: "─┬─", e: "─┐"},
+	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
+	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
+	b: StyleRow{b: "└─", m: "─", i: "─┴─", e: "─┘"},
 }
 
 // Strong is a double lined table.
 var Strong = Style{
-	t: StyleRow{b: "╔", m: "═", i: "╦", e: "╗"},
-	m: StyleRow{b: "║", m: " ", i: "║", e: "║"},
-	s: StyleRow{b: "╠", m: "═", i: "╬", e: "╣"},
-	b: StyleRow{b: "╚", m: "═", i: "╩", e: "╝"},
+	t: StyleRow{b: "╔═", m: "═", i: "═╦═", e: "═╗"},
+	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
+	s: StyleRow{b: "╠═", m: "═", i: "═╬═", e: "═╣"},
+	b: StyleRow{b: "╚═", m: "═", i: "═╩═", e: "═╝"},
 }
 
 // StrongVertical is a slim border with a double lined vertical borders.
 var VStrong = Style{
-	t: StyleRow{b: "╓", m: "─", i: "╥", e: "╖"},
-	m: StyleRow{b: "║", m: " ", i: "║", e: "║"},
-	s: StyleRow{b: "╟", m: "─", i: "╫", e: "╢"},
-	b: StyleRow{b: "╙", m: "─", i: "╨", e: "╜"},
+	t: StyleRow{b: "╓─", m: "─", i: "─╥─", e: "─╖"},
+	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
+	s: StyleRow{b: "╟─", m: "─", i: "─╫─", e: "─╢"},
+	b: StyleRow{b: "╙─", m: "─", i: "─╨─", e: "─╜"},
 }
 
 // StrongHorizantal is a slim border with a double lined horizantal borders.
 var HStrong = Style{
-	t: StyleRow{b: "╒", m: "═", i: "╤", e: "╕"},
-	m: StyleRow{b: "│", m: " ", i: "│", e: "│"},
-	s: StyleRow{b: "╞", m: "═", i: "╪", e: "╡"},
-	b: StyleRow{b: "╘", m: "═", i: "╧", e: "╛"},
+	t: StyleRow{b: "╒═", m: "═", i: "═╤═", e: "═╕"},
+	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
+	s: StyleRow{b: "╞═", m: "═", i: "═╪═", e: "═╡"},
+	b: StyleRow{b: "╘═", m: "═", i: "═╧═", e: "═╛"},
 }
 
 // Clear is a thin bordered table.
 var Clear = Style{
-	t: StyleRow{b: " ", m: " ", i: " ", e: " "},
-	m: StyleRow{b: " ", m: " ", i: " ", e: " "},
-	s: StyleRow{b: " ", m: " ", i: " ", e: " "},
-	b: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	t: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	m: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	s: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	b: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 }
 
 // Markdown is a thin bordered table.
 var Markdown = Style{
-	t: StyleRow{b: " ", m: " ", i: " ", e: " "},
-	m: StyleRow{b: "|", m: " ", i: "|", e: "|"},
-	s: StyleRow{b: "|", m: "-", i: "|", e: "|"},
-	b: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	t: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
+	m: StyleRow{b: "| ", m: " ", i: " | ", e: " |"},
+	s: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
+	b: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
 }
 
 func row(s StyleRow, lengths []int) string {

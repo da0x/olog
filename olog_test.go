@@ -28,23 +28,15 @@ type Data struct {
 	Score float32
 }
 
-func TestTable(t *testing.T) {
-	var data = []Data{
-		Data{Name: "Daher", Age: 39, Score: 99.223},
-		Data{Name: "Justin", Age: 25, Score: 99.223},
-	}
-	Print(data)
-}
-
 func TestPrint(t *testing.T) {
 	var data = []Data{
 		Data{Name: "Daher", Age: 39, Score: 99.223},
 		Data{Name: "Justin", Age: 25, Score: 99.223},
 	}
 	Print(data)         // same as PrintWithStyle(data, olog.Normal)
-	PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
-	PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 	PrintStrong(data)   // same as PrintWithStyle(data, olog.Strong)
 	PrintVStrong(data)  // same as PrintWithStyle(data, olog.VStrong)
 	PrintHStrong(data)  // same as PrintWithStyle(data, olog.HStrong)
+	PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
+	PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 }
