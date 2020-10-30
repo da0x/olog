@@ -78,6 +78,22 @@ var HStrong = Style{
 	b: StyleRow{b: "╘", m: "═", i: "╧", e: "╛"},
 }
 
+// Clear is a thin bordered table.
+var Clear = Style{
+	t: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	m: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	s: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	b: StyleRow{b: " ", m: " ", i: " ", e: " "},
+}
+
+// Markdown is a thin bordered table.
+var Markdown = Style{
+	t: StyleRow{b: " ", m: " ", i: " ", e: " "},
+	m: StyleRow{b: "|", m: " ", i: "|", e: "|"},
+	s: StyleRow{b: "|", m: "-", i: "|", e: "|"},
+	b: StyleRow{b: " ", m: " ", i: " ", e: " "},
+}
+
 func row(s StyleRow, lengths []int) string {
 	o := ""
 	o += s.b

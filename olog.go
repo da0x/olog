@@ -56,3 +56,11 @@ func PrintVStrong(rows interface{}) {
 func PrintHStrong(rows interface{}) {
 	PrintWithStyle(rows, HStrong)
 }
+
+func PrintClear(rows interface{}) {
+	PrintWithStyle(rows, Clear)
+}
+
+func PrintMarkdown(rows interface{}) {
+	PrintWithStyle(rows, Markdown)
+}
