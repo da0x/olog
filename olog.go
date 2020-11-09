@@ -32,13 +32,17 @@ func PrintWithStyle(rows interface{}, s Style) {
 	h := headers(rows)
 	v := values(rows)
 	lengths := lengths(h, v)
-	println(s.topRow(lengths))
-	println(s.middleRow(h, lengths))
-	println(s.seperatorRow(lengths))
+
+	var o string
+	o += fmt.Sprintln(s.topRow(lengths))
+
+	o += fmt.Sprintln(s.middleRow(h, lengths))
+	o += fmt.Sprintln(s.seperatorRow(lengths))
 	for _, row := range v {
-		println(s.middleRow(row, lengths))
+		o += fmt.Sprintln(s.middleRow(row, lengths))
 	}
-	println(s.bottomRow(lengths))
+	o += fmt.Sprintln(s.bottomRow(lengths))
+	println(o)
 }
 
 func Print(rows interface{}) {
