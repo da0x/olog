@@ -85,7 +85,7 @@ olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ║ Jane Smith ║ 30  ║ 99.223 ║
 ╙────────────╨─────╨────────╜
 ```
-#### Horizantal Strong
+#### Horizontal Strong
 ```
 olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ```
