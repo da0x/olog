@@ -58,3 +58,8 @@ The above example prints the following output:
 ```
 ### Maintainer
 Daher Alfawares
+### Todo
+- Identical Cell Merging
+- Header & Footer
+- CSV
+- Text Alignment
