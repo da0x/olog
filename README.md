@@ -1,5 +1,6 @@
+![Go](https://github.com/da0x/olog/workflows/Go/badge.svg)
 # olog
-Welcome to `olog`! This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
+This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
 ### Installation
 To download the library, simply run:
 ```
