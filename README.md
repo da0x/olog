@@ -38,7 +38,8 @@ The above example prints the following output:
 ## Styles
 Here are the available styles
 #### Strong
-```olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
+```
+olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ```
 ```
 ╔════════════╦═════╦════════╗
