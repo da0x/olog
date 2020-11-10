@@ -11,7 +11,7 @@ import "github.com/da0x/golang/olog"
 ```
 ### Example
 Here is an example of how to use olog:
-```
+```go
 type Data struct {
 	Name  string
 	Age   int
@@ -38,7 +38,7 @@ The above example prints the following output:
 ## Styles
 Here are the available styles
 #### Soft
-```
+```go
 olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
 ```
 ```
@@ -50,7 +50,7 @@ olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
 ╰────────────┴─────┴────────╯
 ```
 #### Bold
-```
+```go
 olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
 ```
 ```
@@ -62,7 +62,7 @@ olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
 ┗━━━━━━━━━━━━┻━━━━━┻━━━━━━━━┛
 ```
 #### Strong
-```
+```go
 olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ```
 ```
@@ -74,7 +74,7 @@ olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ╚════════════╩═════╩════════╝
 ```
 #### Vertical Strong 
-```
+```go
 olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ```
 ```
@@ -86,7 +86,7 @@ olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ╙────────────╨─────╨────────╜
 ```
 #### Horizontal Strong
-```
+```go
 olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ```
 ```
@@ -98,7 +98,7 @@ olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ╘════════════╧═════╧════════╛
 ```
 #### Clear
-```
+```go
 olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
 ```
 ```                       
@@ -108,7 +108,7 @@ olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
  Jane Smith   30    99.223
 ```                       
 #### Markdown
-```
+```go
 olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 ```
 ```
@@ -118,7 +118,7 @@ olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 | Jane Smith | 30  | 99.223 |
 ```
 #### Block
-```
+```go
 olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
 ```
 ```
