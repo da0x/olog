@@ -38,7 +38,8 @@ The above example prints the following output:
 ## Styles
 Here are the available styles
 #### Strong
-`olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)`
+```olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
+```
 ```
 ╔════════════╦═════╦════════╗
 ║ Name       ║ Age ║ Score  ║
@@ -48,7 +49,9 @@ Here are the available styles
 ╚════════════╩═════╩════════╝
 ```
 #### Vertical Strong 
-`olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)`
+```
+olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
+```
 ```
 ╓────────────╥─────╥────────╖
 ║ Name       ║ Age ║ Score  ║
@@ -58,7 +61,9 @@ Here are the available styles
 ╙────────────╨─────╨────────╜
 ```
 #### Horizantal Strong
-`olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)`
+```
+olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
+```
 ```
 ╒════════════╤═════╤════════╕
 │ Name       │ Age │ Score  │
@@ -68,7 +73,9 @@ Here are the available styles
 ╘════════════╧═════╧════════╛
 ```
 #### Clear
-`olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)`
+```
+olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
+```
 ```                       
  Name         Age   Score 
                           
@@ -76,7 +83,9 @@ Here are the available styles
  Jane Smith   30    99.223
 ```                       
 #### Markdown
-`olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)`
+```
+olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
+```
 ```
 | Name       | Age | Score  |
 |:----------:|:---:|:------:|
