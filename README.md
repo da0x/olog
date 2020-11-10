@@ -24,37 +24,74 @@ func main() {
 		Data{Name: "Jane Smith", Age: 30, Score: 100.0},
 	}
 	olog.Print(data)        // same as PrintWithStyle(data, olog.Normal)
-	olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
-	olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
-	olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 }
 ```
 The above example prints the following output:
 ```
-┌──────────┬───┬─────┐
-│Name      │Age│Score│
-├──────────┼───┼─────┤
-│John Smith│30 │100  │
-│Jane Smith│30 │100  │
-└──────────┴───┴─────┘
-╔══════════╦═══╦═════╗
-║Name      ║Age║Score║
-╠══════════╬═══╬═════╣
-║John Smith║30 ║100  ║
-║Jane Smith║30 ║100  ║
-╚══════════╩═══╩═════╝
-╓──────────╥───╥─────╖
-║Name      ║Age║Score║
-╟──────────╫───╫─────╢
-║John Smith║30 ║100  ║
-║Jane Smith║30 ║100  ║
-╙──────────╨───╨─────╜
-╒══════════╤═══╤═════╕
-│Name      │Age│Score│
-╞══════════╪═══╪═════╡
-│John Smith│30 │100  │
-│Jane Smith│30 │100  │
-╘══════════╧═══╧═════╛
+┌────────────┬─────┬────────┐
+│ Name       │ Age │ Score  │
+├────────────┼─────┼────────┤
+│ John Smith │ 30  │ 99.223 │
+│ Jane Smith │ 30  │ 99.223 │
+└────────────┴─────┴────────┘
+```
+## Styles
+Here are the available styles
+#### Strong
+```
+olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
+```
+```
+╔════════════╦═════╦════════╗
+║ Name       ║ Age ║ Score  ║
+╠════════════╬═════╬════════╣
+║ John Smith ║ 30  ║ 99.223 ║
+║ Jane Smith ║ 30  ║ 99.223 ║
+╚════════════╩═════╩════════╝
+```
+#### Vertical Strong 
+```
+olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
+```
+```
+╓────────────╥─────╥────────╖
+║ Name       ║ Age ║ Score  ║
+╟────────────╫─────╫────────╢
+║ John Smith ║ 30  ║ 99.223 ║
+║ Jane Smith ║ 30  ║ 99.223 ║
+╙────────────╨─────╨────────╜
+```
+#### Horizantal Strong
+```
+olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
+```
+```
+╒════════════╤═════╤════════╕
+│ Name       │ Age │ Score  │
+╞════════════╪═════╪════════╡
+│ John Smith │ 30  │ 99.223 │
+│ Jane Smith │ 30  │ 99.223 │
+╘════════════╧═════╧════════╛
+```
+#### Clear
+```
+olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
+```
+```                       
+ Name         Age   Score 
+                          
+ John Smith   30    99.223
+ Jane Smith   30    99.223
+```                       
+#### Markdown
+```
+olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
+```
+```
+| Name       | Age | Score  |
+|:----------:|:---:|:------:|
+| John Smith | 30  | 99.223 |
+| Jane Smith | 30  | 99.223 |
 ```
 ### Maintainer
 Daher Alfawares
