@@ -30,13 +30,16 @@ type Data struct {
 
 func TestPrint(t *testing.T) {
 	var data = []Data{
-		Data{Name: "Daher", Age: 39, Score: 99.223},
-		Data{Name: "Justin", Age: 25, Score: 99.223},
+		Data{Name: "John Smith", Age: 30, Score: 99.223},
+		Data{Name: "Jane Smith", Age: 30, Score: 99.223},
 	}
 	Print(data)         // same as PrintWithStyle(data, olog.Normal)
+	PrintSoft(data)     // same as PrintWithStyle(data, olog.Soft)
+	PrintBold(data)     // same as PrintWithStyle(data, olog.Bold)
 	PrintStrong(data)   // same as PrintWithStyle(data, olog.Strong)
 	PrintVStrong(data)  // same as PrintWithStyle(data, olog.VStrong)
 	PrintHStrong(data)  // same as PrintWithStyle(data, olog.HStrong)
 	PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
 	PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
+	PrintBlock(data)    // same as PrintWithStyle(data, olog.Block)
 }

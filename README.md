@@ -37,6 +37,30 @@ The above example prints the following output:
 ```
 ## Styles
 Here are the available styles
+#### Soft
+```
+olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
+```
+```
+╭────────────┬─────┬────────╮
+│ Name       │ Age │ Score  │
+├────────────┼─────┼────────┤
+│ John Smith │ 30  │ 99.223 │
+│ Jane Smith │ 30  │ 99.223 │
+╰────────────┴─────┴────────╯
+```
+#### Bold
+```
+olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
+```
+```
+┏━━━━━━━━━━━━┳━━━━━┳━━━━━━━━┓
+┃ Name       ┃ Age ┃ Score  ┃
+┣━━━━━━━━━━━━╋━━━━━╋━━━━━━━━┫
+┃ John Smith ┃ 30  ┃ 99.223 ┃
+┃ Jane Smith ┃ 30  ┃ 99.223 ┃
+┗━━━━━━━━━━━━┻━━━━━┻━━━━━━━━┛
+```
 #### Strong
 ```
 olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
@@ -92,6 +116,18 @@ olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 |:----------:|:---:|:------:|
 | John Smith | 30  | 99.223 |
 | Jane Smith | 30  | 99.223 |
+```
+#### Block
+```
+olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
+```
+```
+▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜
+▌ Name       ┃ Age ┃ Score  ▐
+▌━━━━━━━━━━━━╋━━━━━╋━━━━━━━━▐
+▌ John Smith ┃ 30  ┃ 99.223 ▐
+▌ Jane Smith ┃ 30  ┃ 99.223 ▐
+▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟
 ```
 ### Maintainer
 Daher Alfawares

@@ -49,6 +49,14 @@ func Print(rows interface{}) {
 	PrintWithStyle(rows, Normal)
 }
 
+func PrintSoft(rows interface{}) {
+	PrintWithStyle(rows, Soft)
+}
+
+func PrintBold(rows interface{}) {
+	PrintWithStyle(rows, Bold)
+}
+
 func PrintStrong(rows interface{}) {
 	PrintWithStyle(rows, Strong)
 }
@@ -67,4 +75,8 @@ func PrintClear(rows interface{}) {
 
 func PrintMarkdown(rows interface{}) {
 	PrintWithStyle(rows, Markdown)
+}
+
+func PrintBlock(rows interface{}) {
+	PrintWithStyle(rows, Block)
 }

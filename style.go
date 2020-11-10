@@ -54,6 +54,22 @@ var Normal = Style{
 	b: StyleRow{b: "└─", m: "─", i: "─┴─", e: "─┘"},
 }
 
+// Soft is a thin bordered table.
+var Soft = Style{
+	t: StyleRow{b: "╭─", m: "─", i: "─┬─", e: "─╮"},
+	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
+	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
+	b: StyleRow{b: "╰─", m: "─", i: "─┴─", e: "─╯"},
+}
+
+// Bold is a thin bordered table.
+var Bold = Style{
+	t: StyleRow{b: "┏━", m: "━", i: "━┳━", e: "━┓"},
+	m: StyleRow{b: "┃ ", m: " ", i: " ┃ ", e: " ┃"},
+	s: StyleRow{b: "┣━", m: "━", i: "━╋━", e: "━┫"},
+	b: StyleRow{b: "┗━", m: "━", i: "━┻━", e: "━┛"},
+}
+
 // Strong is a double lined table.
 var Strong = Style{
 	t: StyleRow{b: "╔═", m: "═", i: "═╦═", e: "═╗"},
@@ -92,6 +108,14 @@ var Markdown = Style{
 	m: StyleRow{b: "| ", m: " ", i: " | ", e: " |"},
 	s: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
 	b: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
+}
+
+// Block is a slim border with a double lined horizantal borders.
+var Block = Style{
+	t: StyleRow{b: "▛▀", m: "▀", i: "▀▀▀", e: "▀▜"},
+	m: StyleRow{b: "▌ ", m: " ", i: " ┃ ", e: " ▐"},
+	s: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
+	b: StyleRow{b: "▙▄", m: "▄", i: "▄▄▄", e: "▄▟"},
 }
 
 func row(s StyleRow, lengths []int) string {
