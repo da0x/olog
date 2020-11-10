@@ -1,5 +1,5 @@
 # olog
-Welcome to `olog`! This is a table printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
+Welcome to `olog`! This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
 ### Installation
 To download the library, simply run:
 ```
@@ -59,6 +59,7 @@ The above example prints the following output:
 ### Maintainer
 Daher Alfawares
 ### Todo
+- Single Object |Name|Value|
 - Identical Cell Merging
 - Header & Footer
 - CSV
