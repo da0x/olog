@@ -133,8 +133,8 @@ olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
 ### Maintainer
 Daher Alfawares
 ### Todo
-- Single Object |Name|Value|
-- Identical Cell Merging
-- Header & Footer
-- CSV
-- Text Alignment
+☐ Single Object |Name|Value|
+☐ Identical Cell Merging
+☐ Header & Footer
+☐ CSV
+☐ Text Alignment
