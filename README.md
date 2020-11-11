@@ -1,4 +1,4 @@
-![Go](https://github.com/da0x/olog/workflows/Go/badge.svg)
+![Go](https://github.com/da0x/olog/workflows/Go/badge.svg) ![CodeQL](https://github.com/da0x/olog/workflows/CodeQL/badge.svg)
 # olog
 This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
 ### Installation
