@@ -1,5 +1,6 @@
+![Go](https://github.com/da0x/olog/workflows/Go/badge.svg) ![CodeQL](https://github.com/da0x/olog/workflows/CodeQL/badge.svg)
 # olog
-Welcome to `olog`! This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
+This is a box printing library for Go. It takes any array of structs and assembles an ascii box around the objects. This logger is not meant for large amount of data and instead should be used only on smaller arrays.
 ### Installation
 To download the library, simply run:
 ```
@@ -11,7 +12,7 @@ import "github.com/da0x/golang/olog"
 ```
 ### Example
 Here is an example of how to use olog:
-```
+```go
 type Data struct {
 	Name  string
 	Age   int
@@ -38,7 +39,7 @@ The above example prints the following output:
 ## Styles
 Here are the available styles
 #### Soft
-```
+```go
 olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
 ```
 ```
@@ -50,7 +51,7 @@ olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
 ╰────────────┴─────┴────────╯
 ```
 #### Bold
-```
+```go
 olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
 ```
 ```
@@ -62,7 +63,7 @@ olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
 ┗━━━━━━━━━━━━┻━━━━━┻━━━━━━━━┛
 ```
 #### Strong
-```
+```go
 olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ```
 ```
@@ -74,7 +75,7 @@ olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ╚════════════╩═════╩════════╝
 ```
 #### Vertical Strong 
-```
+```go
 olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ```
 ```
@@ -85,8 +86,8 @@ olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ║ Jane Smith ║ 30  ║ 99.223 ║
 ╙────────────╨─────╨────────╜
 ```
-#### Horizantal Strong
-```
+#### Horizontal Strong
+```go
 olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ```
 ```
@@ -98,7 +99,7 @@ olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ╘════════════╧═════╧════════╛
 ```
 #### Clear
-```
+```go
 olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
 ```
 ```                       
@@ -108,7 +109,7 @@ olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
  Jane Smith   30    99.223
 ```                       
 #### Markdown
-```
+```go
 olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 ```
 ```
@@ -118,7 +119,7 @@ olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 | Jane Smith | 30  | 99.223 |
 ```
 #### Block
-```
+```go
 olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
 ```
 ```
@@ -132,8 +133,8 @@ olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
 ### Maintainer
 Daher Alfawares
 ### Todo
-- Single Object |Name|Value|
-- Identical Cell Merging
-- Header & Footer
-- CSV
-- Text Alignment
+☐ Single Object |Name|Value|
+☐ Identical Cell Merging
+☐ Header & Footer
+☐ CSV
+☐ Text Alignment
