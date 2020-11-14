@@ -34,8 +34,27 @@ func headers(datasets interface{}) []string {
 			v := reflect.Indirect(item)
 			for j := 0; j < v.NumField(); j++ {
 				o = append(o, fmt.Sprintf("%v", v.Type().Field(j).Name))
-
 			}
+		}
+	}
+	return o
+}
+
+func headersOfStruct(item interface{}) []string {
+	var o = []string{}
+	v := reflect.TypeOf(item)
+	for j := 0; j < v.NumField(); j++ {
+		o = append(o, fmt.Sprintf("%v", v.Field(j).Name))
+	}
+	return o
+}
+
+func valuesOfItem(item reflect.Value) []string {
+	var o = []string{}
+	if item.Kind() == reflect.Struct {
+		v := reflect.Indirect(item)
+		for j := 0; j < v.NumField(); j++ {
+			o = append(o, fmt.Sprintf("%v", v.Field(j).Interface()))
 		}
 	}
 	return o
@@ -44,19 +63,15 @@ func headers(datasets interface{}) []string {
 func values(datasets interface{}) [][]string {
 	var o = [][]string{}
 	items := reflect.ValueOf(datasets)
-	if items.Kind() != reflect.Slice {
-		return [][]string{}
-	}
-	for i := 0; i < items.Len(); i++ {
-		var r = []string{}
-		item := items.Index(i)
-		if item.Kind() == reflect.Struct {
-			v := reflect.Indirect(item)
-			for j := 0; j < v.NumField(); j++ {
-				r = append(r, fmt.Sprintf("%v", v.Field(j).Interface()))
-			}
+	switch items.Kind() {
+	case reflect.Slice:
+		for i := 0; i < items.Len(); i++ {
+			item := items.Index(i)
+			r := valuesOfItem(item)
+			o = append(o, r)
 		}
-		o = append(o, r)
+	case reflect.Struct:
+		return [][]string{valuesOfItem(reflect.ValueOf(items))}
 	}
 	return o
 }
@@ -89,6 +104,17 @@ func lengths(headers []string, rows [][]string) []int {
 	o := vlen(headers)
 	for _, row := range rows {
 		o = vMax(o, vlen(row))
+	}
+	return o
+}
+
+func lengthsOfCSV(rows [][]string) []int {
+	var o []int
+	if len(rows) > 0 {
+		o = vlen(rows[0])
+		for _, row := range rows {
+			o = vMax(o, vlen(row))
+		}
 	}
 	return o
 }

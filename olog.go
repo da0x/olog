@@ -24,59 +24,100 @@ import (
 )
 
 func PrintWithStyle(rows interface{}, s Style) {
-	items := reflect.ValueOf(rows)
-	if items.Kind() != reflect.Slice {
-		fmt.Errorf("olog.Table() only supports arrays. got %v instead",
-			items.Kind())
-	}
 	h := headers(rows)
 	v := values(rows)
 	lengths := lengths(h, v)
 
 	var o string
 	o += fmt.Sprintln(s.topRow(lengths))
-
 	o += fmt.Sprintln(s.middleRow(h, lengths))
 	o += fmt.Sprintln(s.seperatorRow(lengths))
 	for _, row := range v {
 		o += fmt.Sprintln(s.middleRow(row, lengths))
 	}
 	o += fmt.Sprintln(s.bottomRow(lengths))
-	println(o)
+	print(o)
 }
 
-func Print(rows interface{}) {
-	PrintWithStyle(rows, Normal)
+func PrintSliceOfString(strings []string, s Style) {
+	lengths := vlen(strings)
+	var o string
+	o += fmt.Sprintln(s.topRow(lengths))
+	o += fmt.Sprintln(s.middleRow(strings, lengths))
+	o += fmt.Sprintln(s.bottomRow(lengths))
+	print(o)
 }
 
-func PrintSoft(rows interface{}) {
-	PrintWithStyle(rows, Soft)
+func PrintStructs(i interface{}, s Style) {
+	PrintWithStyle(i, s)
 }
 
-func PrintBold(rows interface{}) {
-	PrintWithStyle(rows, Bold)
+type StructField struct {
+	Key   string
+	Value string
 }
 
-func PrintStrong(rows interface{}) {
-	PrintWithStyle(rows, Strong)
+func PrintStruct(object interface{}, s Style) {
+	h := headersOfStruct(object)
+	v := valuesOfItem(reflect.ValueOf(object))
+	var structFields []StructField
+	for i, header := range h {
+		structFields = append(structFields, StructField{header, v[i]})
+	}
+	PrintAnyType(structFields, s)
 }
 
-func PrintVStrong(rows interface{}) {
-	PrintWithStyle(rows, VStrong)
+func PrintSliceOfSliceOfString(csv [][]string, s Style) {
+	if len(csv) == 1 {
+		PrintSliceOfString(csv[0], s)
+		return
+	}
+	lengths := lengthsOfCSV(csv)
+	var o string
+	o += fmt.Sprintln(s.topRow(lengths))
+	for i, row := range csv {
+		o += fmt.Sprintln(s.middleRow(row, lengths))
+		if i == 0 {
+			o += fmt.Sprintln(s.seperatorRow(lengths))
+		}
+	}
+	o += fmt.Sprintln(s.bottomRow(lengths))
+	print(o)
 }
 
-func PrintHStrong(rows interface{}) {
-	PrintWithStyle(rows, HStrong)
+func PrintAnyType(object interface{}, s Style) {
+	o := reflect.TypeOf(object)
+	v := reflect.ValueOf(object)
+	switch o.Kind() {
+	case reflect.Struct:
+		PrintStruct(object, s)
+	case reflect.String:
+		PrintSliceOfString([]string{v.String()}, s)
+	case reflect.Slice:
+		switch o.Elem().Kind() {
+		case reflect.String:
+			PrintSliceOfString(object.([]string), s)
+		case reflect.Struct:
+			PrintStructs(object, s)
+		case reflect.Slice:
+			switch o.Elem().Elem().Kind() {
+			case reflect.String:
+				PrintSliceOfSliceOfString(object.([][]string), s)
+			default:
+				panic("only [][]string is supported")
+			}
+		}
+	default:
+		panic("unsupported type")
+	}
 }
 
-func PrintClear(rows interface{}) {
-	PrintWithStyle(rows, Clear)
-}
-
-func PrintMarkdown(rows interface{}) {
-	PrintWithStyle(rows, Markdown)
-}
-
-func PrintBlock(rows interface{}) {
-	PrintWithStyle(rows, Block)
-}
+func Print(rows interface{})         { PrintAnyType(rows, Normal) }
+func PrintSoft(rows interface{})     { PrintAnyType(rows, Soft) }
+func PrintBold(rows interface{})     { PrintAnyType(rows, Bold) }
+func PrintStrong(rows interface{})   { PrintAnyType(rows, Strong) }
+func PrintVStrong(rows interface{})  { PrintAnyType(rows, VStrong) }
+func PrintHStrong(rows interface{})  { PrintAnyType(rows, HStrong) }
+func PrintClear(rows interface{})    { PrintAnyType(rows, Clear) }
+func PrintMarkdown(rows interface{}) { PrintAnyType(rows, Markdown) }
+func PrintBlock(rows interface{})    { PrintAnyType(rows, Block) }

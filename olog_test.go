@@ -43,3 +43,30 @@ func TestPrint(t *testing.T) {
 	PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 	PrintBlock(data)    // same as PrintWithStyle(data, olog.Block)
 }
+
+func TestPrintString(t *testing.T) {
+	Print("Test Print string")
+	Print([]string{"Test Print []string", "String 1", "String 2"})
+}
+
+func TestStruct(t *testing.T) {
+	Print(Data{"Ahmed", 25, 9.32})
+}
+
+func TestPrintCSV(t *testing.T) {
+	Print([][]string{{"Test Print [][]string", "Single", "Row"}})
+	Print([][]string{
+		{"Test Print [][]string", "Multiple", "Rows"},
+		{"value 100", "value 010", "value 001"},
+		{"value 200", "value 020", "value 002"},
+		{"value 300", "value 030", "value 003"},
+	})
+}
+
+func TestEmpty(t *testing.T) {
+	Print([]Data{})
+	Print("")
+	Print([]string{""})
+	Print([]string{"", ""})
+	Print([][]string{{"", ""}, {"", ""}})
+}

@@ -119,18 +119,16 @@ var Block = Style{
 }
 
 func row(s StyleRow, lengths []int) string {
-	o := ""
-	o += s.b
+	o := s.b
 	for section, length := range lengths {
 		for i := 0; i < length; i++ {
 			o += s.m
 		}
 		if section != len(lengths)-1 {
 			o += s.i
-		} else {
-			o += s.e
 		}
 	}
+	o += s.e
 	return o
 }
 
@@ -157,9 +155,8 @@ func (s *Style) middleRow(words []string, lengths []int) string {
 		}
 		if section != len(lengths)-1 {
 			o += s.m.i
-		} else {
-			o += s.m.e
 		}
 	}
+	o += s.m.e
 	return o
 }
