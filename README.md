@@ -24,7 +24,7 @@ func main() {
 		Data{Name: "John Smith", Age: 30, Score: 100.0},
 		Data{Name: "Jane Smith", Age: 30, Score: 100.0},
 	}
-	olog.Print(data)        // same as PrintWithStyle(data, olog.Normal)
+	olog.Print(data)
 }
 ```
 The above example prints the following output:
@@ -40,7 +40,7 @@ The above example prints the following output:
 Here are the available styles
 #### Soft
 ```go
-olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
+olog.Print(olog.Soft, data)
 ```
 ```
 ╭────────────┬─────┬────────╮
@@ -52,7 +52,7 @@ olog.PrintSoft(data)  // same as PrintWithStyle(data, olog.Soft)
 ```
 #### Bold
 ```go
-olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
+olog.Print(olog.Bold, data)
 ```
 ```
 ┏━━━━━━━━━━━━┳━━━━━┳━━━━━━━━┓
@@ -64,7 +64,7 @@ olog.PrintBold(data)  // same as PrintWithStyle(data, olog.Bold)
 ```
 #### Strong
 ```go
-olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
+olog.Print(olog.Strong, data)
 ```
 ```
 ╔════════════╦═════╦════════╗
@@ -76,7 +76,7 @@ olog.PrintStrong(data)  // same as PrintWithStyle(data, olog.Strong)
 ```
 #### Vertical Strong 
 ```go
-olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
+olog.Print(olog.VStrong, data)
 ```
 ```
 ╓────────────╥─────╥────────╖
@@ -88,7 +88,7 @@ olog.PrintVStrong(data) // same as PrintWithStyle(data, olog.VStrong)
 ```
 #### Horizontal Strong
 ```go
-olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
+olog.Print(olog.HStrong, data)
 ```
 ```
 ╒════════════╤═════╤════════╕
@@ -100,7 +100,7 @@ olog.PrintHStrong(data) // same as PrintWithStyle(data, olog.HStrong)
 ```
 #### Clear
 ```go
-olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
+olog.Print(olog.Clear, data)
 ```
 ```                       
  Name         Age   Score 
@@ -110,7 +110,7 @@ olog.PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
 ```                       
 #### Markdown
 ```go
-olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
+olog.Print(olog.Markdown, data)
 ```
 ```
 | Name       | Age | Score  |
@@ -120,7 +120,7 @@ olog.PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
 ```
 #### Block
 ```go
-olog.PrintBlock(data) // same as PrintWithStyle(data, olog.Block)
+olog.Print(olog.Block, data)
 ```
 ```
 ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜
