@@ -30,8 +30,6 @@ type StyleRow struct {
 	e string
 }
 
-type StyleEdge struct{ b, m, iu, id, ib, e string }
-
 // Style represents the table structure in 4 strings.
 // 't' for top.
 // 'm' for middle.
@@ -56,7 +54,7 @@ type Style struct {
 	m StyleRow
 	s StyleRow
 	b StyleRow
-	e StyleEdge
+	e StyleRow
 }
 
 // Normal is a thin bordered table.
@@ -64,8 +62,8 @@ var Normal = Style{
 	t: StyleRow{b: "┌─", m: "─", i: "─┬─", e: "─┐"},
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "└─", m: "─", i: "─┴─", e: "─┘"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Soft is a thin bordered table.
@@ -73,8 +71,8 @@ var Soft = Style{
 	t: StyleRow{b: "╭─", m: "─", i: "─┬─", e: "─╮"},
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "╰─", m: "─", i: "─┴─", e: "─╯"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Bold is a thin bordered table.
@@ -82,8 +80,8 @@ var Bold = Style{
 	t: StyleRow{b: "┏━", m: "━", i: "━┳━", e: "━┓"},
 	m: StyleRow{b: "┃ ", m: " ", i: " ┃ ", e: " ┃"},
 	s: StyleRow{b: "┣━", m: "━", i: "━╋━", e: "━┫"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "┗━", m: "━", i: "━┻━", e: "━┛"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Strong is a double lined table.
@@ -91,8 +89,8 @@ var Strong = Style{
 	t: StyleRow{b: "╔═", m: "═", i: "═╦═", e: "═╗"},
 	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
 	s: StyleRow{b: "╠═", m: "═", i: "═╬═", e: "═╣"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "╚═", m: "═", i: "═╩═", e: "═╝"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // StrongVertical is a slim border with a double lined vertical borders.
@@ -100,8 +98,8 @@ var VStrong = Style{
 	t: StyleRow{b: "╓─", m: "─", i: "─╥─", e: "─╖"},
 	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
 	s: StyleRow{b: "╟─", m: "─", i: "─╫─", e: "─╢"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "╙─", m: "─", i: "─╨─", e: "─╜"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // StrongHorizantal is a slim border with a double lined horizantal borders.
@@ -109,8 +107,8 @@ var HStrong = Style{
 	t: StyleRow{b: "╒═", m: "═", i: "═╤═", e: "═╕"},
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "╞═", m: "═", i: "═╪═", e: "═╡"},
+	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
 	b: StyleRow{b: "╘═", m: "═", i: "═╧═", e: "═╛"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Clear is a thin bordered table.
@@ -118,8 +116,8 @@ var Clear = Style{
 	t: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 	m: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 	s: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	e: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 	b: StyleRow{b: " ", m: " ", i: "   ", e: ""},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Markdown is a thin bordered table.
@@ -127,8 +125,8 @@ var Markdown = Style{
 	t: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
 	m: StyleRow{b: "| ", m: " ", i: " | ", e: " |"},
 	s: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
+	e: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
 	b: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Block is a slim border with a double lined horizantal borders.
@@ -136,8 +134,8 @@ var Block = Style{
 	t: StyleRow{b: "▛▀", m: "▀", i: "▀▀▀", e: "▀▜"},
 	m: StyleRow{b: "▌ ", m: " ", i: " ┃ ", e: " ▐"},
 	s: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
+	e: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
 	b: StyleRow{b: "▙▄", m: "▄", i: "▄▄▄", e: "▄▟"},
-	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 func row(s StyleRow, lengths []int) string {
@@ -154,10 +152,66 @@ func row(s StyleRow, lengths []int) string {
 	return o
 }
 
+func repeat(str string, n int) string {
+	o := ""
+	for i := 0; i < n; i++ {
+		o += str
+	}
+	return o
+}
+
 func (s *Style) edge(width int, upperLengths, lowerLengths []int) string {
 	o := s.e.b
-	for i := 0; i < width; i++ {
-		o += s.e.m
+	var i, u int
+	var j, v int
+	var x int
+	u += upperLengths[i]
+	v += lowerLengths[j]
+
+	for {
+		if u < v {
+			o += repeat(s.e.m, u-x+1)
+			o += "╧"
+			o += s.e.m
+
+			x += u - x + 3
+			i += 1
+			if i < len(upperLengths) {
+				u += upperLengths[i] + 1
+			}
+			u += 2
+			continue
+		}
+		if v < u {
+			o += repeat(s.e.m, v-x+1)
+			o += "╤"
+			o += s.e.m
+
+			x += v - x + 3
+			j += 1
+			if j < len(lowerLengths) {
+				v += lowerLengths[j] + 1
+			}
+			v += 2
+			continue
+		}
+		if u == v {
+			o += repeat(s.e.m, u-x+1)
+			if u == width {
+				break
+			}
+			o += "╪"
+
+			x += u - x + 3
+			if i < len(upperLengths) {
+				u += upperLengths[i] + 1
+			}
+			if j < len(lowerLengths) {
+				v += lowerLengths[j] + 1
+			}
+			u += 2
+			v += 2
+		}
 	}
 	o += s.e.e
 	return o

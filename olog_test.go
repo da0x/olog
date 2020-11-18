@@ -86,6 +86,7 @@ func TestVariadic(t *testing.T) {
 	Print(
 		"string",
 		[]string{"[]string", "hello", "world"},
+		[]string{"[]string", "hello", "world", "for real", "now"},
 		[][]string{
 			{"Test Print [][]string", "Multiple", "Rows"},
 			{"value 100", "value 010", "value 001"},
@@ -97,5 +98,6 @@ func TestVariadic(t *testing.T) {
 			Data{Name: "John Smith", Age: 30, Score: 99.223},
 			Data{Name: "Jane Smith", Age: 30, Score: 99.223},
 		},
+		[]string{"[]string", "hello", "world", "for real", "now"},
 	)
 }
