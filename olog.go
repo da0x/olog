@@ -19,90 +19,51 @@
 package olog
 
 import (
-	"fmt"
 	"reflect"
 )
 
-func PrintWithStyle(rows interface{}, s Style) {
-	h := headers(rows)
-	v := values(rows)
-	lengths := lengths(h, v)
-
-	var o string
-	o += fmt.Sprintln(s.topRow(lengths))
-	o += fmt.Sprintln(s.middleRow(h, lengths))
-	o += fmt.Sprintln(s.seperatorRow(lengths))
-	for _, row := range v {
-		o += fmt.Sprintln(s.middleRow(row, lengths))
-	}
-	o += fmt.Sprintln(s.bottomRow(lengths))
-	print(o)
+type info struct {
+	rows    [][]string
+	lengths []int
+	style   Style
 }
 
-func PrintSliceOfString(strings []string, s Style) {
-	lengths := vlen(strings)
-	var o string
-	o += fmt.Sprintln(s.topRow(lengths))
-	o += fmt.Sprintln(s.middleRow(strings, lengths))
-	o += fmt.Sprintln(s.bottomRow(lengths))
-	print(o)
+func infoOfSliceOfStruct(s interface{}) info {
+	var i info
+	i.rows = append(i.rows, headers(s))
+	i.rows = append(i.rows, []string{})
+	i.rows = merge(i.rows, values(s))
+	return i
 }
 
-func PrintStructs(i interface{}, s Style) {
-	PrintWithStyle(i, s)
-}
-
-type StructField struct {
-	Key   string
-	Value string
-}
-
-func PrintStruct(object interface{}, s Style) {
+func infoOfStruct(object interface{}) info {
 	h := headersOfStruct(object)
 	v := valuesOfItem(reflect.ValueOf(object))
-	var structFields []StructField
-	for i, header := range h {
-		structFields = append(structFields, StructField{header, v[i]})
+	var i info
+	for index, header := range h {
+		i.rows = append(i.rows, []string{header, v[index]})
 	}
-	PrintAnyType(structFields, s)
+	return i
 }
 
-func PrintSliceOfSliceOfString(csv [][]string, s Style) {
-	if len(csv) == 1 {
-		PrintSliceOfString(csv[0], s)
-		return
-	}
-	lengths := lengthsOfCSV(csv)
-	var o string
-	o += fmt.Sprintln(s.topRow(lengths))
-	for i, row := range csv {
-		o += fmt.Sprintln(s.middleRow(row, lengths))
-		if i == 0 {
-			o += fmt.Sprintln(s.seperatorRow(lengths))
-		}
-	}
-	o += fmt.Sprintln(s.bottomRow(lengths))
-	print(o)
-}
-
-func PrintAnyType(object interface{}, s Style) {
+func infoOfAnyType(object interface{}) info {
 	o := reflect.TypeOf(object)
 	v := reflect.ValueOf(object)
 	switch o.Kind() {
-	case reflect.Struct:
-		PrintStruct(object, s)
 	case reflect.String:
-		PrintSliceOfString([]string{v.String()}, s)
+		return info{rows: [][]string{{v.String()}}}
+	case reflect.Struct:
+		return infoOfStruct(object)
 	case reflect.Slice:
 		switch o.Elem().Kind() {
 		case reflect.String:
-			PrintSliceOfString(object.([]string), s)
+			return info{rows: [][]string{object.([]string)}}
 		case reflect.Struct:
-			PrintStructs(object, s)
+			return infoOfSliceOfStruct(object)
 		case reflect.Slice:
 			switch o.Elem().Elem().Kind() {
 			case reflect.String:
-				PrintSliceOfSliceOfString(object.([][]string), s)
+				return info{rows: object.([][]string)}
 			default:
 				panic("only [][]string is supported")
 			}
@@ -110,14 +71,101 @@ func PrintAnyType(object interface{}, s Style) {
 	default:
 		panic("unsupported type")
 	}
+	return info{}
 }
 
-func Print(rows interface{})         { PrintAnyType(rows, Normal) }
-func PrintSoft(rows interface{})     { PrintAnyType(rows, Soft) }
-func PrintBold(rows interface{})     { PrintAnyType(rows, Bold) }
-func PrintStrong(rows interface{})   { PrintAnyType(rows, Strong) }
-func PrintVStrong(rows interface{})  { PrintAnyType(rows, VStrong) }
-func PrintHStrong(rows interface{})  { PrintAnyType(rows, HStrong) }
-func PrintClear(rows interface{})    { PrintAnyType(rows, Clear) }
-func PrintMarkdown(rows interface{}) { PrintAnyType(rows, Markdown) }
-func PrintBlock(rows interface{})    { PrintAnyType(rows, Block) }
+func vlengths(rows [][]string) [][]int {
+	var o [][]int
+	return o
+}
+
+func (i *info) analyze() {
+	if len(i.rows) == 0 {
+		return
+	}
+	for _, row := range i.rows {
+		if len(row) == 0 {
+			continue
+		}
+		if len(i.lengths) == 0 {
+			i.lengths = vlen(row)
+		} else {
+			i.lengths = vMax(i.lengths, vlen(row))
+		}
+	}
+}
+
+func (i *info) width() int {
+	return sigma(i.lengths) + (len(i.lengths)-1)*i.style.seperatorWidth()
+}
+
+func (i *info) adjust(w int) {
+	var c int
+	var l int = len(i.lengths)
+	for w > 0 {
+		i.lengths[c%l] += 1
+		w -= 1
+		c += 1
+	}
+}
+
+func (i info) printTop() {
+	println(i.style.topRow(i.lengths))
+}
+
+func (i info) print() {
+	for _, s := range i.rows {
+		if len(s) == 0 {
+			println(i.style.seperatorRow(i.lengths))
+		} else {
+			println(i.style.middleRow(s, i.lengths))
+		}
+	}
+}
+
+func (i info) printEdge(width int, upperLengths, lowerLengths []int) {
+	println(i.style.edge(width, upperLengths, lowerLengths))
+}
+
+func (i info) printBottom() {
+	println(i.style.bottomRow(i.lengths))
+}
+
+func Print(input ...interface{}) {
+	var info []info
+	var s Style = Normal
+	for _, o := range input {
+		n := infoOfAnyType(o)
+		n.style = s
+		info = append(info, n)
+
+	}
+	var max int = 0
+	for c := range info {
+		info[c].analyze()
+		max = iMax(max, info[c].width())
+	}
+	for i, o := range info {
+		o.adjust(max - o.width())
+		if i == 0 {
+			o.printTop()
+		}
+
+		if i > 0 && i < len(info) {
+			o.printEdge(max, info[i-1].lengths, info[i].lengths)
+		}
+		o.print()
+		if i == len(info)-1 {
+			o.printBottom()
+		}
+	}
+}
+
+func PrintSoft(rows ...interface{})     { Print(Soft, rows) }
+func PrintBold(rows ...interface{})     { Print(Bold, rows) }
+func PrintStrong(rows ...interface{})   { Print(Strong, rows) }
+func PrintVStrong(rows ...interface{})  { Print(VStrong, rows) }
+func PrintHStrong(rows ...interface{})  { Print(HStrong, rows) }
+func PrintClear(rows ...interface{})    { Print(Clear, rows) }
+func PrintMarkdown(rows ...interface{}) { Print(Markdown, rows) }
+func PrintBlock(rows ...interface{})    { Print(Block, rows) }

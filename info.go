@@ -21,6 +21,13 @@ package olog
 import "reflect"
 import "fmt"
 
+func merge(s1, s2 [][]string) [][]string {
+	for _, r2 := range s2 {
+		s1 = append(s1, r2)
+	}
+	return s1
+}
+
 func headers(datasets interface{}) []string {
 	var o = []string{}
 	items := reflect.ValueOf(datasets)
@@ -76,14 +83,14 @@ func values(datasets interface{}) [][]string {
 	return o
 }
 
-func iMax(v1 int, v2 int) int {
+func iMax(v1, v2 int) int {
 	if v1 > v2 {
 		return v1
 	}
 	return v2
 }
 
-func vMax(v1 []int, v2 []int) []int {
+func vMax(v1, v2 []int) []int {
 	var o = []int{}
 	for i, vv1 := range v1 {
 		vv2 := v2[i]
@@ -104,6 +111,14 @@ func lengths(headers []string, rows [][]string) []int {
 	o := vlen(headers)
 	for _, row := range rows {
 		o = vMax(o, vlen(row))
+	}
+	return o
+}
+
+func sigma(v []int) int {
+	var o int
+	for _, i := range v {
+		o += i
 	}
 	return o
 }

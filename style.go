@@ -18,6 +18,20 @@
 
 package olog
 
+// StyleRow represents one row of a style.
+// b for begining.
+// m for middle.
+// i for intersection.
+// e for end.
+type StyleRow struct {
+	b string
+	m string
+	i string
+	e string
+}
+
+type StyleEdge struct{ b, m, iu, id, ib, e string }
+
 // Style represents the table structure in 4 strings.
 // 't' for top.
 // 'm' for middle.
@@ -37,14 +51,13 @@ package olog
 //  ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 //
 // https://en.wikipedia.org/wiki/Box-drawing_character
-type Style struct{ t, m, s, b StyleRow }
-
-// Style row represents one row of a style.
-// b for begining.
-// m for middle.
-// i for intersection.
-// e for end.
-type StyleRow struct{ b, m, i, e string }
+type Style struct {
+	t StyleRow
+	m StyleRow
+	s StyleRow
+	b StyleRow
+	e StyleEdge
+}
 
 // Normal is a thin bordered table.
 var Normal = Style{
@@ -52,6 +65,7 @@ var Normal = Style{
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
 	b: StyleRow{b: "└─", m: "─", i: "─┴─", e: "─┘"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Soft is a thin bordered table.
@@ -60,6 +74,7 @@ var Soft = Style{
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
 	b: StyleRow{b: "╰─", m: "─", i: "─┴─", e: "─╯"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Bold is a thin bordered table.
@@ -68,6 +83,7 @@ var Bold = Style{
 	m: StyleRow{b: "┃ ", m: " ", i: " ┃ ", e: " ┃"},
 	s: StyleRow{b: "┣━", m: "━", i: "━╋━", e: "━┫"},
 	b: StyleRow{b: "┗━", m: "━", i: "━┻━", e: "━┛"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Strong is a double lined table.
@@ -76,6 +92,7 @@ var Strong = Style{
 	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
 	s: StyleRow{b: "╠═", m: "═", i: "═╬═", e: "═╣"},
 	b: StyleRow{b: "╚═", m: "═", i: "═╩═", e: "═╝"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // StrongVertical is a slim border with a double lined vertical borders.
@@ -84,6 +101,7 @@ var VStrong = Style{
 	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
 	s: StyleRow{b: "╟─", m: "─", i: "─╫─", e: "─╢"},
 	b: StyleRow{b: "╙─", m: "─", i: "─╨─", e: "─╜"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // StrongHorizantal is a slim border with a double lined horizantal borders.
@@ -92,6 +110,7 @@ var HStrong = Style{
 	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
 	s: StyleRow{b: "╞═", m: "═", i: "═╪═", e: "═╡"},
 	b: StyleRow{b: "╘═", m: "═", i: "═╧═", e: "═╛"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Clear is a thin bordered table.
@@ -100,6 +119,7 @@ var Clear = Style{
 	m: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 	s: StyleRow{b: " ", m: " ", i: "   ", e: ""},
 	b: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Markdown is a thin bordered table.
@@ -108,6 +128,7 @@ var Markdown = Style{
 	m: StyleRow{b: "| ", m: " ", i: " | ", e: " |"},
 	s: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
 	b: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 // Block is a slim border with a double lined horizantal borders.
@@ -116,6 +137,7 @@ var Block = Style{
 	m: StyleRow{b: "▌ ", m: " ", i: " ┃ ", e: " ▐"},
 	s: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
 	b: StyleRow{b: "▙▄", m: "▄", i: "▄▄▄", e: "▄▟"},
+	e: StyleEdge{b: "╞═", m: "═", iu: "╧", id: "╤", ib: "╪", e: "═╡"},
 }
 
 func row(s StyleRow, lengths []int) string {
@@ -130,6 +152,20 @@ func row(s StyleRow, lengths []int) string {
 	}
 	o += s.e
 	return o
+}
+
+func (s *Style) edge(width int, upperLengths, lowerLengths []int) string {
+	o := s.e.b
+	for i := 0; i < width; i++ {
+		o += s.e.m
+	}
+	o += s.e.e
+	return o
+}
+
+func (s *Style) seperatorWidth() int {
+	return 3
+	return len(s.m.i)
 }
 
 func (s *Style) topRow(lengths []int) string {
