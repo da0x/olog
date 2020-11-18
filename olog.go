@@ -102,6 +102,9 @@ func (i *info) width() int {
 func (i *info) adjust(w int) {
 	var c int
 	var l int = len(i.lengths)
+	if l == 0 {
+		return
+	}
 	for w > 0 {
 		i.lengths[c%l] += 1
 		w -= 1
@@ -135,10 +138,13 @@ func Print(input ...interface{}) {
 	var info []info
 	var s Style = Normal
 	for _, o := range input {
+		if reflect.TypeOf(o).String() == "olog.Style" {
+			s = reflect.ValueOf(o).Interface().(Style)
+			continue
+		}
 		n := infoOfAnyType(o)
 		n.style = s
 		info = append(info, n)
-
 	}
 	var max int = 0
 	for c := range info {
@@ -150,7 +156,6 @@ func Print(input ...interface{}) {
 		if i == 0 {
 			o.printTop()
 		}
-
 		if i > 0 && i < len(info) {
 			o.printEdge(max, info[i-1].lengths, info[i].lengths)
 		}
@@ -160,12 +165,3 @@ func Print(input ...interface{}) {
 		}
 	}
 }
-
-func PrintSoft(rows ...interface{})     { Print(Soft, rows) }
-func PrintBold(rows ...interface{})     { Print(Bold, rows) }
-func PrintStrong(rows ...interface{})   { Print(Strong, rows) }
-func PrintVStrong(rows ...interface{})  { Print(VStrong, rows) }
-func PrintHStrong(rows ...interface{})  { Print(HStrong, rows) }
-func PrintClear(rows ...interface{})    { Print(Clear, rows) }
-func PrintMarkdown(rows ...interface{}) { Print(Markdown, rows) }
-func PrintBlock(rows ...interface{})    { Print(Block, rows) }

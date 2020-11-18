@@ -24,10 +24,19 @@ package olog
 // i for intersection.
 // e for end.
 type StyleRow struct {
-	b string
-	m string
-	i string
-	e string
+	B string
+	M string
+	I string
+	E string
+}
+
+type StyleSep struct {
+	B string
+	M string
+	U string
+	I string
+	L string
+	E string
 }
 
 // Style represents the table structure in 4 strings.
@@ -50,105 +59,105 @@ type StyleRow struct {
 //
 // https://en.wikipedia.org/wiki/Box-drawing_character
 type Style struct {
-	t StyleRow
-	m StyleRow
-	s StyleRow
-	b StyleRow
-	e StyleRow
+	T StyleRow
+	M StyleRow
+	S StyleRow
+	L StyleRow
+	B StyleSep
 }
 
 // Normal is a thin bordered table.
 var Normal = Style{
-	t: StyleRow{b: "┌─", m: "─", i: "─┬─", e: "─┐"},
-	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
-	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "└─", m: "─", i: "─┴─", e: "─┘"},
+	T: StyleRow{B: "┌─", M: "─", I: "─┬─", E: "─┐"},
+	M: StyleRow{B: "│ ", M: " ", I: " │ ", E: " │"},
+	S: StyleRow{B: "├─", M: "─", I: "─┼─", E: "─┤"},
+	L: StyleRow{B: "└─", M: "─", I: "─┴─", E: "─┘"},
+	B: StyleSep{B: "├─", M: "─", U: "┴", I: "┼", L: "┬", E: "─┤"},
 }
 
 // Soft is a thin bordered table.
 var Soft = Style{
-	t: StyleRow{b: "╭─", m: "─", i: "─┬─", e: "─╮"},
-	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
-	s: StyleRow{b: "├─", m: "─", i: "─┼─", e: "─┤"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "╰─", m: "─", i: "─┴─", e: "─╯"},
+	T: StyleRow{B: "╭─", M: "─", I: "─┬─", E: "─╮"},
+	M: StyleRow{B: "│ ", M: " ", I: " │ ", E: " │"},
+	S: StyleRow{B: "├─", M: "─", I: "─┼─", E: "─┤"},
+	L: StyleRow{B: "╰─", M: "─", I: "─┴─", E: "─╯"},
+	B: StyleSep{B: "╞═", M: "═", U: "╧", I: "╪", L: "╤", E: "═╡"},
 }
 
 // Bold is a thin bordered table.
 var Bold = Style{
-	t: StyleRow{b: "┏━", m: "━", i: "━┳━", e: "━┓"},
-	m: StyleRow{b: "┃ ", m: " ", i: " ┃ ", e: " ┃"},
-	s: StyleRow{b: "┣━", m: "━", i: "━╋━", e: "━┫"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "┗━", m: "━", i: "━┻━", e: "━┛"},
+	T: StyleRow{B: "┏━", M: "━", I: "━┳━", E: "━┓"},
+	M: StyleRow{B: "┃ ", M: " ", I: " ┃ ", E: " ┃"},
+	S: StyleRow{B: "┣━", M: "━", I: "━╋━", E: "━┫"},
+	L: StyleRow{B: "┗━", M: "━", I: "━┻━", E: "━┛"},
+	B: StyleSep{B: "┣━", M: "━", U: "┻", I: "╋", L: "┳", E: "━┫"},
 }
 
 // Strong is a double lined table.
 var Strong = Style{
-	t: StyleRow{b: "╔═", m: "═", i: "═╦═", e: "═╗"},
-	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
-	s: StyleRow{b: "╠═", m: "═", i: "═╬═", e: "═╣"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "╚═", m: "═", i: "═╩═", e: "═╝"},
+	T: StyleRow{B: "╔═", M: "═", I: "═╦═", E: "═╗"},
+	M: StyleRow{B: "║ ", M: " ", I: " ║ ", E: " ║"},
+	S: StyleRow{B: "╠═", M: "═", I: "═╬═", E: "═╣"},
+	L: StyleRow{B: "╚═", M: "═", I: "═╩═", E: "═╝"},
+	B: StyleSep{B: "╠═", M: "═", U: "╩", I: "╬", L: "╦", E: "═╣"},
 }
 
 // StrongVertical is a slim border with a double lined vertical borders.
 var VStrong = Style{
-	t: StyleRow{b: "╓─", m: "─", i: "─╥─", e: "─╖"},
-	m: StyleRow{b: "║ ", m: " ", i: " ║ ", e: " ║"},
-	s: StyleRow{b: "╟─", m: "─", i: "─╫─", e: "─╢"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "╙─", m: "─", i: "─╨─", e: "─╜"},
+	T: StyleRow{B: "╓─", M: "─", I: "─╥─", E: "─╖"},
+	M: StyleRow{B: "║ ", M: " ", I: " ║ ", E: " ║"},
+	S: StyleRow{B: "╟─", M: "─", I: "─╫─", E: "─╢"},
+	L: StyleRow{B: "╙─", M: "─", I: "─╨─", E: "─╜"},
+	B: StyleSep{B: "╟─", M: "─", U: "╨", I: "╫", L: "╥", E: "─╢"},
 }
 
 // StrongHorizantal is a slim border with a double lined horizantal borders.
 var HStrong = Style{
-	t: StyleRow{b: "╒═", m: "═", i: "═╤═", e: "═╕"},
-	m: StyleRow{b: "│ ", m: " ", i: " │ ", e: " │"},
-	s: StyleRow{b: "╞═", m: "═", i: "═╪═", e: "═╡"},
-	e: StyleRow{b: "╞═", m: "═", i: "╧╪╤", e: "═╡"},
-	b: StyleRow{b: "╘═", m: "═", i: "═╧═", e: "═╛"},
+	T: StyleRow{B: "╒═", M: "═", I: "═╤═", E: "═╕"},
+	M: StyleRow{B: "│ ", M: " ", I: " │ ", E: " │"},
+	S: StyleRow{B: "╞═", M: "═", I: "═╪═", E: "═╡"},
+	L: StyleRow{B: "╘═", M: "═", I: "═╧═", E: "═╛"},
+	B: StyleSep{B: "╞═", M: "═", U: "╧", I: "╪", L: "╤", E: "═╡"},
 }
 
 // Clear is a thin bordered table.
 var Clear = Style{
-	t: StyleRow{b: " ", m: " ", i: "   ", e: ""},
-	m: StyleRow{b: " ", m: " ", i: "   ", e: ""},
-	s: StyleRow{b: " ", m: " ", i: "   ", e: ""},
-	e: StyleRow{b: " ", m: " ", i: "   ", e: ""},
-	b: StyleRow{b: " ", m: " ", i: "   ", e: ""},
+	T: StyleRow{B: " ", M: " ", I: "   ", E: ""},
+	M: StyleRow{B: " ", M: " ", I: "   ", E: ""},
+	S: StyleRow{B: " ", M: " ", I: "   ", E: ""},
+	L: StyleRow{B: " ", M: " ", I: "   ", E: ""},
+	B: StyleSep{B: "", M: "", U: "", I: "", L: "", E: ""},
 }
 
 // Markdown is a thin bordered table.
 var Markdown = Style{
-	t: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
-	m: StyleRow{b: "| ", m: " ", i: " | ", e: " |"},
-	s: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
-	e: StyleRow{b: "|:", m: "-", i: ":|:", e: ":|"},
-	b: StyleRow{b: "  ", m: " ", i: "   ", e: "  "},
+	T: StyleRow{B: "  ", M: " ", I: "   ", E: "  "},
+	M: StyleRow{B: "| ", M: " ", I: " | ", E: " |"},
+	S: StyleRow{B: "|:", M: "-", I: ":|:", E: ":|"},
+	L: StyleRow{B: "  ", M: " ", I: "   ", E: "  "},
+	B: StyleSep{B: "", M: "", U: "", I: "", L: "", E: ""},
 }
 
 // Block is a slim border with a double lined horizantal borders.
 var Block = Style{
-	t: StyleRow{b: "▛▀", m: "▀", i: "▀▀▀", e: "▀▜"},
-	m: StyleRow{b: "▌ ", m: " ", i: " ┃ ", e: " ▐"},
-	s: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
-	e: StyleRow{b: "▌━", m: "━", i: "━╋━", e: "━▐"},
-	b: StyleRow{b: "▙▄", m: "▄", i: "▄▄▄", e: "▄▟"},
+	T: StyleRow{B: "▛▀", M: "▀", I: "▀▀▀", E: "▀▜"},
+	M: StyleRow{B: "▌ ", M: " ", I: " ┃ ", E: " ▐"},
+	S: StyleRow{B: "▌━", M: "━", I: "━╋━", E: "━▐"},
+	L: StyleRow{B: "▙▄", M: "▄", I: "▄▄▄", E: "▄▟"},
+	B: StyleSep{B: "▌■", M: "■", U: "■", I: "■", L: "■", E: "■▐"},
 }
 
 func row(s StyleRow, lengths []int) string {
-	o := s.b
+	o := s.B
 	for section, length := range lengths {
 		for i := 0; i < length; i++ {
-			o += s.m
+			o += s.M
 		}
 		if section != len(lengths)-1 {
-			o += s.i
+			o += s.I
 		}
 	}
-	o += s.e
+	o += s.E
 	return o
 }
 
@@ -161,92 +170,79 @@ func repeat(str string, n int) string {
 }
 
 func (s *Style) edge(width int, upperLengths, lowerLengths []int) string {
-	o := s.e.b
-	var i, u int
-	var j, v int
-	var x int
-	u += upperLengths[i]
-	v += lowerLengths[j]
-
-	for {
-		if u < v {
-			o += repeat(s.e.m, u-x+1)
-			o += "╧"
-			o += s.e.m
-
-			x += u - x + 3
-			i += 1
-			if i < len(upperLengths) {
-				u += upperLengths[i] + 1
-			}
-			u += 2
-			continue
+	var o []int
+	for i := 0; i < width; i++ {
+		o = append(o, 0)
+	}
+	var sum int
+	for i, u := range upperLengths {
+		if i == len(upperLengths)-1 {
+			break
 		}
-		if v < u {
-			o += repeat(s.e.m, v-x+1)
-			o += "╤"
-			o += s.e.m
-
-			x += v - x + 3
-			j += 1
-			if j < len(lowerLengths) {
-				v += lowerLengths[j] + 1
-			}
-			v += 2
-			continue
+		sum += u + 1
+		o[sum] = 1
+		sum += 2
+	}
+	sum = 0
+	for i, v := range lowerLengths {
+		if i == len(lowerLengths)-1 {
+			break
 		}
-		if u == v {
-			o += repeat(s.e.m, u-x+1)
-			if u == width {
-				break
-			}
-			o += "╪"
-
-			x += u - x + 3
-			if i < len(upperLengths) {
-				u += upperLengths[i] + 1
-			}
-			if j < len(lowerLengths) {
-				v += lowerLengths[j] + 1
-			}
-			u += 2
-			v += 2
+		sum += v + 1
+		if o[sum] == 1 {
+			o[sum] = 2
+		} else {
+			o[sum] = 3
+		}
+		sum += 2
+	}
+	out := s.B.B
+	for _, c := range o {
+		switch c {
+		case 0:
+			out += s.B.M
+		case 1:
+			out += s.B.U
+		case 2:
+			out += s.B.I
+		case 3:
+			out += s.B.L
 		}
 	}
-	o += s.e.e
-	return o
+	out += s.B.E
+	return out
 }
 
 func (s *Style) seperatorWidth() int {
 	return 3
-	return len(s.m.i)
+	return len(s.M.I)
 }
 
 func (s *Style) topRow(lengths []int) string {
-	return row(s.t, lengths)
+	return row(s.T, lengths)
 }
 
 func (s *Style) seperatorRow(lengths []int) string {
-	return row(s.s, lengths)
+	return row(s.S, lengths)
 }
 
 func (s *Style) bottomRow(lengths []int) string {
-	return row(s.b, lengths)
+	return row(s.L, lengths)
 }
 
 func (s *Style) middleRow(words []string, lengths []int) string {
-	o := s.m.b
+	o := s.M.B
 	for section, length := range lengths {
 		o += words[section]
 		i := len(words[section])
 		for i < length {
-			o += s.m.m
+			o += s.M.M
 			i++
 		}
 		if section != len(lengths)-1 {
-			o += s.m.i
+			o += s.M.I
 		}
 	}
-	o += s.m.e
+	o += s.M.E
 	return o
 }

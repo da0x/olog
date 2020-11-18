@@ -28,48 +28,48 @@ type Data struct {
 	Score float32
 }
 
-// func TestPrint(t *testing.T) {
-// 	var data = []Data{
-// 		Data{Name: "John Smith", Age: 30, Score: 99.223},
-// 		Data{Name: "Jane Smith", Age: 30, Score: 99.223},
-// 	}
-// 	Print(data)         // same as PrintWithStyle(data, olog.Normal)
-// 	PrintSoft(data)     // same as PrintWithStyle(data, olog.Soft)
-// 	PrintBold(data)     // same as PrintWithStyle(data, olog.Bold)
-// 	PrintStrong(data)   // same as PrintWithStyle(data, olog.Strong)
-// 	PrintVStrong(data)  // same as PrintWithStyle(data, olog.VStrong)
-// 	PrintHStrong(data)  // same as PrintWithStyle(data, olog.HStrong)
-// 	PrintClear(data)    // same as PrintWithStyle(data, olog.Clear)
-// 	PrintMarkdown(data) // same as PrintWithStyle(data, olog.Markdown)
-// 	PrintBlock(data)    // same as PrintWithStyle(data, olog.Block)
-// }
-//
-// func TestPrintString(t *testing.T) {
-// 	Print("Test Print string")
-// 	Print([]string{"Test Print []string", "String 1", "String 2"})
-// }
-//
-// func TestStruct(t *testing.T) {
-// 	Print(Data{"Ahmed", 25, 9.32})
-// }
-//
-// func TestPrintCSV(t *testing.T) {
-// 	Print([][]string{{"Test Print [][]string", "Single", "Row"}})
-// 	Print([][]string{
-// 		{"Test Print [][]string", "Multiple", "Rows"},
-// 		{"value 100", "value 010", "value 001"},
-// 		{"value 200", "value 020", "value 002"},
-// 		{"value 300", "value 030", "value 003"},
-// 	})
-// }
-//
-// func TestEmpty(t *testing.T) {
-// 	Print([]Data{})
-// 	Print("")
-// 	Print([]string{""})
-// 	Print([]string{"", ""})
-// 	Print([][]string{{"", ""}, {"", ""}})
-// }
+func TestPrint(t *testing.T) {
+	var data = []Data{
+		Data{Name: "John Smith", Age: 30, Score: 99.223},
+		Data{Name: "Jane Smith", Age: 30, Score: 99.223},
+	}
+	Print(data)
+	Print(Soft, data)
+	Print(Bold, data)
+	Print(Strong, data)
+	Print(VStrong, data)
+	Print(HStrong, data)
+	Print(Clear, data)
+	Print(Markdown, data)
+	Print(Block, data)
+}
+
+func TestPrintString(t *testing.T) {
+	Print("Test Print string")
+	Print([]string{"Test Print []string", "String 1", "String 2"})
+}
+
+func TestStruct(t *testing.T) {
+	Print(Data{"Ahmed", 25, 9.32})
+}
+
+func TestPrintCSV(t *testing.T) {
+	Print([][]string{{"Test Print [][]string", "Single", "Row"}})
+	Print([][]string{
+		{"Test Print [][]string", "Multiple", "Rows"},
+		{"value 100", "value 010", "value 001"},
+		{"value 200", "value 020", "value 002"},
+		{"value 300", "value 030", "value 003"},
+	})
+}
+
+func TestEmpty(t *testing.T) {
+	Print([]Data{})
+	Print("")
+	Print([]string{""})
+	Print([]string{"", ""})
+	Print([][]string{{"", ""}, {"", ""}})
+}
 
 func TestVariadic(t *testing.T) {
 	Print("String Only")
@@ -84,6 +84,7 @@ func TestVariadic(t *testing.T) {
 	Print(Data{"Ahmed", 25, 9.32})
 	Print([]Data{Data{Name: "John Smith", Age: 30, Score: 99.223}, Data{Name: "Jane Smith", Age: 30, Score: 99.223}})
 	Print(
+		Normal,
 		"string",
 		[]string{"[]string", "hello", "world"},
 		[]string{"[]string", "hello", "world", "for real", "now"},
@@ -93,6 +94,7 @@ func TestVariadic(t *testing.T) {
 			{"value 200", "value 020", "value 002"},
 			{"value 300", "value 030", "value 003"},
 		},
+
 		Data{"Ahmed", 25, 9.32},
 		[]Data{
 			Data{Name: "John Smith", Age: 30, Score: 99.223},
