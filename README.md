@@ -132,9 +132,3 @@ olog.Print(olog.Block, data)
 ```
 ### Maintainer
 Daher Alfawares
-### Todo
-☐ Single Object |Name|Value|
-☐ Identical Cell Merging
-☐ Header & Footer
-☐ CSV
-☐ Text Alignment
