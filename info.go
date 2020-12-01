@@ -61,7 +61,11 @@ func valuesOfItem(item reflect.Value) []string {
 	if item.Kind() == reflect.Struct {
 		v := reflect.Indirect(item)
 		for j := 0; j < v.NumField(); j++ {
-			o = append(o, fmt.Sprintf("%v", v.Field(j).Interface()))
+			value := "?"
+			if v.Field(j).CanInterface() {
+				value = fmt.Sprintf("%v", v.Field(j).Interface())
+			}
+			o = append(o, value)
 		}
 	}
 	return o

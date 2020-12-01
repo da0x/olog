@@ -26,6 +26,7 @@ type Data struct {
 	Name  string
 	Age   int
 	Score float32
+	low   int
 }
 
 func TestPrint(t *testing.T) {
@@ -50,7 +51,7 @@ func TestPrintString(t *testing.T) {
 }
 
 func TestStruct(t *testing.T) {
-	Print(Data{"Ahmed", 25, 9.32})
+	Print(Data{"Ahmed", 25, 9.32, 0})
 }
 
 func TestPrintCSV(t *testing.T) {
@@ -81,7 +82,7 @@ func TestVariadic(t *testing.T) {
 			{"value 200", "value 020", "value 002"},
 			{"value 300", "value 030", "value 003"},
 		})
-	Print(Data{"Ahmed", 25, 9.32})
+	Print(Data{"Ahmed", 25, 9.32, 0})
 	Print([]Data{Data{Name: "John Smith", Age: 30, Score: 99.223}, Data{Name: "Jane Smith", Age: 30, Score: 99.223}})
 	Print(
 		Normal,
@@ -95,7 +96,7 @@ func TestVariadic(t *testing.T) {
 			{"value 300", "value 030", "value 003"},
 		},
 
-		Data{"Ahmed", 25, 9.32},
+		Data{"Ahmed", 25, 9.32, 0},
 		[]Data{
 			Data{Name: "John Smith", Age: 30, Score: 99.223},
 			Data{Name: "Jane Smith", Age: 30, Score: 99.223},
