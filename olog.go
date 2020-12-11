@@ -20,6 +20,7 @@ package olog
 
 import (
 	"reflect"
+	"sync"
 )
 
 type info struct {
@@ -134,6 +135,8 @@ func (i info) printBottom() {
 	println(i.style.bottomRow(i.lengths))
 }
 
+var mutex sync.Mutex
+
 func Print(input ...interface{}) {
 	var info []info
 	var s Style = Normal
@@ -151,6 +154,7 @@ func Print(input ...interface{}) {
 		info[c].analyze()
 		max = iMax(max, info[c].width())
 	}
+	mutex.Lock()
 	for i, o := range info {
 		o.adjust(max - o.width())
 		if i == 0 {
@@ -164,4 +168,5 @@ func Print(input ...interface{}) {
 			o.printBottom()
 		}
 	}
+	mutex.Unlock()
 }
