@@ -47,6 +47,14 @@ func infoOfStruct(object interface{}) info {
 	return i
 }
 
+func infoOfMap(object interface{}) info {
+	var i info
+	i.rows = append(i.rows, []string{"Key", "Value"})
+	i.rows = append(i.rows, []string{})
+	i.rows = merge(i.rows, valuesOfMap(reflect.ValueOf(object)))
+	return i
+}
+
 func infoOfAnyType(object interface{}) info {
 	o := reflect.TypeOf(object)
 	v := reflect.ValueOf(object)
@@ -55,6 +63,8 @@ func infoOfAnyType(object interface{}) info {
 		return info{rows: [][]string{{v.String()}}}
 	case reflect.Struct:
 		return infoOfStruct(object)
+	case reflect.Map:
+		return infoOfMap(object)
 	case reflect.Slice:
 		switch o.Elem().Kind() {
 		case reflect.String:

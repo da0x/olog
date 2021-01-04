@@ -104,3 +104,18 @@ func TestVariadic(t *testing.T) {
 		[]string{"[]string", "hello", "world", "for real", "now"},
 	)
 }
+
+func TestMap(t *testing.T) {
+	ms := make(map[string]string)
+	ms["hello"] = "world"
+	mi := make(map[int]string)
+	mi[1] = "one"
+	mi[2] = "two"
+	msi := make(map[string]int)
+	msi["one"] = 1
+	msi["two"] = 2
+	msf := make(map[string]float64)
+	msf["first"] = 1.23
+	msf["last"] = 2.25
+	Print(ms, mi, msi, msf)
+}

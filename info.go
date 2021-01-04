@@ -71,6 +71,23 @@ func valuesOfItem(item reflect.Value) []string {
 	return o
 }
 
+func valuesOfMap(item reflect.Value) [][]string {
+	var o = [][]string{}
+	if item.Kind() == reflect.Map {
+		v := reflect.Indirect(item)
+		for _, key := range v.MapKeys() {
+			val := v.MapIndex(key)
+			value := "?"
+			if val.CanInterface() {
+				value = fmt.Sprintf("%v", val.Interface())
+			}
+			r := []string{key.String(), value}
+			o = append(o, r)
+		}
+	}
+	return o
+}
+
 func values(datasets interface{}) [][]string {
 	var o = [][]string{}
 	items := reflect.ValueOf(datasets)
