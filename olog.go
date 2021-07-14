@@ -21,6 +21,7 @@ package olog
 import (
 	"reflect"
 	"sync"
+	"log"
 )
 
 type info struct {
@@ -76,11 +77,11 @@ func infoOfAnyType(object interface{}) info {
 			case reflect.String:
 				return info{rows: object.([][]string)}
 			default:
-				panic("only [][]string is supported")
+				log.Fatalln("olog.infoOfAnyType() only slice of strings supported, got", o.Kind())
 			}
 		}
 	default:
-		panic("unsupported type")
+		log.Fatalln("olog.infoOfAnyType() invalid type", o.Kind())
 	}
 	return info{}
 }
