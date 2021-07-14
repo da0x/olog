@@ -61,7 +61,7 @@ func infoOfAnyType(object interface{}) info {
 	v := reflect.ValueOf(object)
 	switch o.Kind() {
 	case reflect.Uint:
-		return info{rows: [][]string{{fmt.Sprintf(v.Uint())}}}
+		return info{rows: [][]string{{fmt.Sprintf("%v",v.Uint())}}}
 	case reflect.String:
 		return info{rows: [][]string{{v.String()}}}
 	case reflect.Struct:
