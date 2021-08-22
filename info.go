@@ -63,7 +63,7 @@ func valuesOfItem(item reflect.Value) []string {
 		for j := 0; j < v.NumField(); j++ {
 			value := "?"
 			if v.Field(j).CanInterface() {
-				value = fmt.Sprintf("%v", v.Field(j).Interface())
+				value = fmt.Sprintf("%+v", v.Field(j).Interface())
 			}
 			o = append(o, value)
 		}
