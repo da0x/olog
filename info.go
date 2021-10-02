@@ -20,6 +20,7 @@ package olog
 
 import "reflect"
 import "fmt"
+import "sort"
 
 func merge(s1, s2 [][]string) [][]string {
 	for _, r2 := range s2 {
@@ -84,6 +85,9 @@ func valuesOfMap(item reflect.Value) [][]string {
 			r := []string{key.String(), value}
 			o = append(o, r)
 		}
+	        sort.Slice(o, func(i, j int) bool {                                                                                                                                                                 
+                	return o[i][0] < o[j][0]
+                })
 	}
 	return o
 }
