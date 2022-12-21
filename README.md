@@ -118,6 +118,11 @@ olog.Print(olog.Markdown, data)
 | John Smith | 30  | 99.223 |
 | Jane Smith | 30  | 99.223 |
 ```
+Shows As:
+| Name       | Age | Score  |
+|:----------:|:---:|:------:|
+| John Smith | 30  | 99.223 |
+| Jane Smith | 30  | 99.223 |
 #### Block
 ```go
 olog.Print(olog.Block, data)
